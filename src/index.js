@@ -27,8 +27,6 @@ app.get('/', (req, res) => {
   res.send("Unauthorized")  
 })
 
-// app.listen(PORT, () => {
-//   console.log(`Server running port ${PORT}`)
-// })
-
-module.exports = app;
+app.listen(PORT, () => {
+  console.log(`Server running port ${PORT}`)
+})
