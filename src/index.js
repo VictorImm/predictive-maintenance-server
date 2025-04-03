@@ -23,6 +23,9 @@ app.use(express.json())
 app.use("/token", routesToken)
 app.use("/survey", routesSurvey)
 
+app.get('/', (req, res) => {
+  res.send("Unauthorized")  
+})
 
 app.listen(PORT, () => {
   console.log(`Server running port ${PORT}`)
