@@ -10,13 +10,13 @@ app.use(express.json())
 // controller
 
 // middleware
-const midTokenAuth = require("./middleware/auth")
+const midTokenAuth = require("./src/middleware/auth")
 
 // models
 
 // routes
-const routesToken = require("./routes/token")
-const routesSurvey = require("./routes/survey")
+const routesToken = require("./src/routes/token")
+const routesSurvey = require("./src/routes/survey")
 
 app.use(midTokenAuth)
 
