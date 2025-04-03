@@ -3,6 +3,7 @@ require("dotenv").config()
 const PORT = process.env.PORT
 const express = require("express")
 const app = express()
+app.use(express.json())
 
 // config
 
@@ -19,7 +20,6 @@ const routesSurvey = require("./routes/survey")
 
 app.use(midTokenAuth)
 
-app.use(express.json())
 app.use("/token", routesToken)
 app.use("/survey", routesSurvey)
 
@@ -27,8 +27,8 @@ app.get('/', (req, res) => {
   res.send("Unauthorized")  
 })
 
-app.listen(PORT, () => {
-  console.log(`Server running port ${PORT}`)
-})
+// app.listen(PORT, () => {
+//   console.log(`Server running port ${PORT}`)
+// })
 
 module.exports = app;
