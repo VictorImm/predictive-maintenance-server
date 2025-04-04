@@ -7,7 +7,7 @@ const tokenAuth = (req, res, next) => {
     const token = authHeader && authHeader.split(' ')[1];
 
     if (!token) {
-      return res.send(401).json({
+      return res.status(401).json({
         message: "Empty token request",        
       })
     }
@@ -19,12 +19,13 @@ const tokenAuth = (req, res, next) => {
         message: "Token expired"
       })
     }
+    
+    next()
   } catch (error) {
     res.status(500).json({
       message: "Internal Server Error"
     }) 
   }
-  next()
 }
 
 module.exports = tokenAuth
