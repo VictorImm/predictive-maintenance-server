@@ -2,6 +2,6 @@ const express = require("express")
 const controllerToken = require("../controller/token")
 const router = express.Router()
 
-router.get('/', controllerToken.getToken)
+router.post('/', controllerToken.getToken)
 
 module.exports = router
