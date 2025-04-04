@@ -1,12 +1,10 @@
-const bcrypt = require("bcrypt")
-const salt = bcrypt.genSaltSync(5)
 const configToken = require("../config/token")
 
 const getToken = (req, res) => {
 
   try {
-    const currentUser = bcrypt.hashSync(req.body.user, salt)
-    const validUser = bcrypt.hashSync(process.env.USER1, salt)
+    const currentUser = req.body.user
+    const validUser = process.env.USER1
 
     if (currentUser == validUser) {
       res.json({
@@ -14,7 +12,7 @@ const getToken = (req, res) => {
         token: configToken.generateAccessToken(validUser)
       }) 
     } else {
-      res.json({
+      res.status(401).json({
         message: "Invalid User",        
       }) 
     }

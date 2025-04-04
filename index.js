@@ -18,9 +18,8 @@ const midTokenAuth = require("./src/middleware/auth")
 const routesToken = require("./src/routes/token")
 const routesSurvey = require("./src/routes/survey")
 
-app.use(midTokenAuth)
-
 app.use("/token", routesToken)
+app.use(midTokenAuth)
 app.use("/survey", routesSurvey)
 
 app.get('/', (req, res) => {
