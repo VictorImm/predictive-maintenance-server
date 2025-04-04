@@ -1,10 +1,15 @@
 const configToken = require("../config/token")
 
 const getToken = (req, res) => {
-
   try {
     const currentUser = req.body.user
     const validUser = process.env.USER1
+
+    if (!currentUser) {
+      return res.status(401).json({
+        message: "Empty Request",        
+      })
+    }
 
     if (currentUser == validUser) {
       res.json({
@@ -13,7 +18,7 @@ const getToken = (req, res) => {
       }) 
     } else {
       res.status(401).json({
-        message: "Invalid User",        
+        message: "Invalid User",
       }) 
     }
   } catch (error) {
