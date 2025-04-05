@@ -1,10 +1,10 @@
 const { Pool } = require("@neondatabase/serverless");
-const {PGHOST, PGDATABASE, PGUSER, PGPASSWORD} = process.env;
+const {DB_PGHOST, DB_PGDATABASE, DB_PGUSER, DB_PGPASSWORD} = process.env;
 const pool = new Pool({
-  host: PGHOST,
-  database: PGDATABASE,
-  user: PGUSER,
-  password: PGPASSWORD,
+  host: DB_PGHOST,
+  database: DB_PGDATABASE,
+  user: DB_PGUSER,
+  password: DB_PGPASSWORD,
   port: process.env.PORT,
   ssl: {
     require: true
