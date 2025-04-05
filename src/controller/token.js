@@ -1,24 +1,25 @@
 const configToken = require("../config/token")
+const modelUser = require("../models/user")
 
-const getToken = (req, res) => {
+const getToken = async (req, res) => {
   try {
-    const currentUser = req.body.user
-    const validUser = process.env.USER1
+    const currentUser = req.body.user.toUpperCase()
 
     if (!currentUser) {
       return res.status(401).json({
         message: "Empty Request",        
       })
     }
-
-    if (currentUser == validUser) {
+    
+    const result = await modelUser.userExist(currentUser)
+    if (result.success) {
       res.json({
         message: "Request Success",
-        token: configToken.generateAccessToken(validUser)
+        token: configToken.generateAccessToken(currentUser)
       }) 
     } else {
       res.status(401).json({
-        message: "Invalid User",
+        message: result.message
       }) 
     }
   } catch (error) {

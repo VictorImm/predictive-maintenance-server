@@ -29,6 +29,13 @@ app.get('/', (req, res) => {
   `);
 });
 
+app.get('/neon-version', async (_, res) => {
+  const sql = neon(`${process.env.DB_URL}`);
+  const response = await sql`SELECT version()`;
+  const { version } = response[0];
+  res.json({ version });
+});
+
 app.use("/token", routesToken)
 app.use(midTokenAuth)
 app.use("/survey", routesSurvey)
